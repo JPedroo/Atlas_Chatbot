@@ -11,6 +11,10 @@
     flex-direction: column; /* Adicionado para empilhar o footer abaixo do chat */
     min-height: 100vh;
     background-color: #000000;
+    background-image: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
     margin: 0; /* Remove a margem padrão do body */
   }
   
@@ -19,7 +23,7 @@
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 30%;
     margin-bottom: 20px; /* Adicionado para espaço entre o chat e o footer */
   }
   
@@ -33,23 +37,36 @@
     height: 500px;
     overflow-y: scroll;
   }
+
+  .titulo-imagem {
+    width: 40px; /* Defina a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    vertical-align: middle; /* Alinha a imagem verticalmente com o texto */
+    margin-right: 10px; /* Espaçamento entre a imagem e o texto */
+  }
   
   .user-message {
     text-align: right;
     padding: 10px;
-    background-color: #ffffff;
+    color:#ccc;
+    background-color: #2F4F4F;
     border-radius: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: 600;
+    max-width: 40%;
+    margin: 5px 0 5px auto;
+    margin-right: 10px;
   }
   
   .bot-message {
-    text-align: justify;
+    text-align: left;
     padding: 10px;
-    background-color: #e9e9e9;
+    color:#ccc;
+    background-color: #2F4F4F;
     border-radius: 10px;
     margin-bottom: 5px;
     font-weight: 500;
+    margin-right: 40px;
   }
   
   form {
@@ -103,12 +120,25 @@
     <img src="loader.gif" width="150px" alt="Loading...">
   </div>
   <footer>
-    YEAH, BUDDY!
   </footer>
   <script>
     const chatHistory = document.getElementById('chat-history');
     const userInput = document.getElementById('user-input');
     const form = document.getElementById('chat-form');
+
+    function formatResponse(response) {
+      // Insere quebras de linha e formatações para parágrafos
+      const formattedResponse = response
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Formatação em negrito
+        .replace(/\*(.*?)\*/g, '<em>$1</em>') // Formatação em itálico
+        .replace(/--/g, '<br>') // Quebras de linha onde houver "--"
+        .replace(/\n/g, '<br>') // Adiciona quebras de linha quando necessário
+        .replace(/:\s\*/g, ': <ul><li>') // Transforma asteriscos em listas
+        .replace(/\*\s/g, '</li><li>') // Cria novos itens de lista
+        .replace(/<\/li><li>$/, '</li></ul>'); // Finaliza a lista
+    
+      return formattedResponse;
+    }
 
     async function sendMessage() {
       const userMessage = userInput.value;
@@ -125,7 +155,7 @@
 
         const data = await response.json();
         console.log(data);
-        const botMessage = data.response;
+        const botMessage = formatResponse(data.response);
         console.log(botMessage);
         // Add chat message to the chat history
         chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
