@@ -1,0 +1,102 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Adicionado para empilhar o footer abaixo do chat */
+    min-height: 100vh;
+    background-color: #000000;
+    background-image: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    margin: 0; /* Remove a margem padrão do body */
+  }
+  
+  #chat-container {
+    background-color: #111111;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin-bottom: 20px; /* Adicionado para espaço entre o chat e o footer */
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  #chat-history {
+    height: 500px;
+    overflow-y: scroll;
+  }
+
+  .titulo-imagem {
+    width: 40px; /* Defina a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    vertical-align: middle; /* Alinha a imagem verticalmente com o texto */
+    margin-right: 10px; /* Espaçamento entre a imagem e o texto */
+  }
+  
+  .user-message {
+    text-align: right;
+    padding: 10px;
+    color:#ccc;
+    background-color: #2F4F4F;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    max-width: 40%;
+    margin: 5px 0 5px auto;
+    margin-right: 10px;
+  }
+  
+  .bot-message {
+    text-align: left;
+    padding: 10px;
+    color:#ccc;
+    background-color: #2F4F4F;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    margin-right: 40px;
+  }
+  
+  form {
+    display: flex;
+  }
+  
+  input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #9f111b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  #loader {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  footer {
+    color: white; /* Cor do texto */
+    font-weight: bold; /* Negrito */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 20px; /* Espaço acima do footer */
+  }

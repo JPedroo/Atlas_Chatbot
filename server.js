@@ -1,13 +1,13 @@
-// node --version # Should be >= 18
-// npm install @google/generative-ai express
-
 const express = require('express');
 const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
 const dotenv = require('dotenv').config()
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(express.static('public'));
 app.use(express.json());
+
 const MODEL_NAME = "gemini-1.5-flash";
 const API_KEY = process.env.API_KEY;
 
